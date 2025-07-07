@@ -1,0 +1,9 @@
+1. buka 2 prompt cmd
+a. cmd kau buat untuk run si llama3 nya perintnya :ollama run llama3 
+b. cmd ke dua buat perintah : cloudflared tunnel --url http://127.0.0.1:11434 --http-host-header "localhost:11434"
+2. buka google colab yg TA-2025 di google drive semisal di file manager sebelah kiri blm ada credential.json boleh upload file trus ambil dari download yang ada di filemanager computer mu
+3. check hasil dari run cloudflared tunnel --url http://127.0.0.1:11434 --http-host-header "localhost:11434" yg di cmd ke dua trus copy paste link yang ada di hasil run nya trus nnt modifikasi code cell ke 2 yg bagian OLLAMA_URL = "#ini isinya nnt yg copy paste dri kotak' yg di hasil run cloudflare td"
+4.edit bagian sheet setting yg ada di spreadsheet mu buat juga linknya si cloudflare td
+5. runall yg ada dri google colab td
+
+"semangatttttttt" 

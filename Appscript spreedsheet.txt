@@ -1,0 +1,23 @@
+isi app script yang ada ada extensi di spreadsheet:
+const URL_CELL   = 'Settings!A1';   // base tunnel URL
+const MODEL_CELL = 'Settings!A2';   // cell that holds the model name
+
+function OLLAMA(prompt, model) {
+  const ss   = SpreadsheetApp.getActiveSpreadsheet();
+  let base   = ss.getRange(URL_CELL).getValue().toString().trim();
+  let mdl    = model || ss.getRange(MODEL_CELL).getValue().toString().trim();  // ← one new line
+
+  if (!base) throw new Error('Missing tunnel URL in ' + URL_CELL);
+  if (!mdl)  throw new Error('Missing model name in ' + MODEL_CELL);
+
+  if (base.endsWith('/')) base = base.slice(0, -1);      // strip trailing /
+  const url = base + '/api/generate';
+
+  const r = UrlFetchApp.fetch(url, {
+    method      : 'post',
+    contentType : 'application/json',
+    payload     : JSON.stringify({ model: mdl, prompt, stream: false })
+  });
+
+  return JSON.parse(r.getContentText()).response;
+}
